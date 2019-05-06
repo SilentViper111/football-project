@@ -22,6 +22,7 @@ class CreateEkipeTable extends Migration
             $table->integer('zmage_porazi');
             $table->integer('dani_goli');
             $table->integer('prejeti_goli');
+            $table->integer('id_trenerja');
             $table->timestamps();
         });
     }

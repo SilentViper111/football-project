@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function index(){
-        return view('pages.homepage');
+        if(\Auth::check()){
+            $user = \Auth::user();
+            return view('pages.homepage', compact('user'));
+        }
+        else{
+            return view('auth.login');
+        }
     }
 }

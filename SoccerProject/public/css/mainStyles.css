@@ -1,28 +1,53 @@
 *{
-    font-family: 'Roboto', serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
 }
+/* Ozadje */
+#background{
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    filter: blur(5px);
+}
+/* Vsi grid elementi */
 .item1 {
     grid-area: header;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-    padding: 10px;
-    font-size: 50px;
+    padding-left: 40px;
+    font-size: 30px;
     font-weight: bold;
-    font-family: 'Alfa Slab One', cursive;
+    line-height: 60px;
+    height: 60px;
 }
 .item2 {
     grid-area: user;
-    border-bottom: 1px solid black;
-    text-align: center;
+    height: 60px;
+    font-size: 12px;
+    padding-right: 20px;
 }
-.item3 { grid-area: nav;
-text-align: center; }
-.item4 { grid-area: main; }
-.item5 { grid-area: novice; }
-.item6 { grid-area: footer; }
-
+.item3 {
+    grid-area: nav;
+    padding: 10px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.item4 {
+    grid-area: main;
+}
+.item5 {
+    grid-area: novice;
+}
+.item6 {
+    grid-area: footer;
+    padding: 5px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+/* Grid container */
 .grid-container {
     display: grid;
     grid-template-areas:
@@ -30,20 +55,49 @@ text-align: center; }
     'nav nav nav nav nav nav'
     'main main main main novice novice'
     'footer footer footer footer footer footer';
-    font-size: 30px;
+    width: 80%;
+    height: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
-
 .grid-container > div{
-    background-color: #1DD300;
+    background-color: rgba(255,255,255,0.5);
 }
+/* Podatki o uporabniku */
+#prijavljeni{
+    font-weight: normal;
+    display: inline-block;
+    line-height: 60px;
+    float: right;
+}
+.ime{
+    font-weight: bold;
+    display: inline-block;
+}
+#logout{
+    display: inline-block;
+    float: right;
+    background-color: rgba(0,0,0,0.1);
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+}
+/* Navigacija */
 li{
     display: inline-block;
+    margin: 5px;
+}
+.linki{
+    text-decoration: none;
+    color: black;
+    background-color: rgba(0,0,0,0.1);
+    padding: 10px;
     border-radius: 5px;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 25px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-    margin:5px;
-    background-image: linear-gradient(white, #95F695);
+}
+/* News feed */
+.rss-box{
+    float: right;
 }

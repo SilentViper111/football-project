@@ -23,6 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('pages.homepage');
+    }
+
+    // Funkcija za izpis
+    public function logout(){
+        \Auth::logout();
+        return redirect('/');
     }
 }
