@@ -4,7 +4,7 @@
 <table>
     <tr>
         <th>Ime</th>
-        <th>Priime</th>
+        <th>Priimek</th>
         <th>Ekipa</th>
         <th>Pozicija</th>
         <th>Starost</th>

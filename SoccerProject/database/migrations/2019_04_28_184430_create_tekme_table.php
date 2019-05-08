@@ -17,7 +17,7 @@ class CreateTekmeTable extends Migration
             $table->bigIncrements('id');
             $table->integer('id_stadiona');
             $table->integer('id_lige');
-            $table->DateTime('datum_tekme');
+            $table->date('datum_tekme');
             $table->integer('st_gledalcev');
             $table->integer('dodatek1');
             $table->integer('dodatek2');

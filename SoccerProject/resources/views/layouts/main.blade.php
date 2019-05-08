@@ -17,10 +17,12 @@
         </div>
         <div class="item3">
             <center>
-                <li><a class="linki" href="/">Domov</a></li>
-                <li><a class="linki" href="/tekme">Tekme</a></li>
+                <li><a class="linki" href="/">Ekipe</a></li>
                 <li><a class="linki" href="/igralci">Igralci</a></li>
+                <li><a class="linki" href="/tekme">Tekme</a></li>
                 <li><a class="linki" href="/drzave">Države</a></li>
+                <li><a class="linki" href="/lige">Lige</a></li>
+                <li><a class="linki" href="/stadioni">Stadioni</a></li>
                 <li><a class="linki" href="/trenerji">Trenerji</a></li>
             </center>
         </div>

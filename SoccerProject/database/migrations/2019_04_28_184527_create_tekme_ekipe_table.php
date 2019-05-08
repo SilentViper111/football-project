@@ -16,7 +16,7 @@ class CreateTekmeEkipeTable extends Migration
         Schema::create('tekme_ekipe', function (Blueprint $table) {
             $table->integer('id_tekme');
             $table->integer('id_ekipe');
-            $table->integer('zmaga_poraz');
+            $table->char('zmaga_poraz');
             $table->integer('st_golov');
             $table->timestamps();
         });

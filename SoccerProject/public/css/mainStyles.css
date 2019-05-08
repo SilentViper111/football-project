@@ -38,9 +38,12 @@
 }
 .item4 {
     grid-area: main;
+    padding-right: 10px;
 }
 .item5 {
     grid-area: novice;
+    padding: 15px;
+    border-left: 1px solid rgba(0,0,0,0.2);
 }
 .item6 {
     grid-area: footer;
@@ -53,7 +56,7 @@
     grid-template-areas:
     'header header header user user user'
     'nav nav nav nav nav nav'
-    'main main main main novice novice'
+    'main main main main main novice'
     'footer footer footer footer footer footer';
     width: 80%;
     height: 100%;
@@ -97,7 +100,17 @@ li{
     padding: 10px;
     border-radius: 5px;
 }
-/* News feed */
-.rss-box{
-    float: right;
+/* Table */
+table{
+}
+td, th, table{
+    padding: 5px;
+    border-radius: 5px;
+}
+td{
+    border: 1px solid rgba(0,0,0,0.2);
+}
+th{
+    border: 1px solid rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.1);
 }
