@@ -12,8 +12,12 @@
 */
 
 Route::get('/', 'MainController@index');
+Route::get('/igralci', 'MainController@igralci');
+Route::get('/tekme', 'MainController@index');
+Route::get('/stadioni', 'MainController@index');
+Route::get('/trenerji', 'MainController@trenerji');
+Route::get('/lige', 'MainController@lige');
+Route::get('/drzave', 'MainController@drzave');
 
 Auth::routes();
 Route::get('/logout', 'HomeController@logout');
-
-Route::get('/home', 'HomeController@index')->name('home');

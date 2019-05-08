@@ -25,9 +25,7 @@
             </center>
         </div>
         <div class="item4">@yield('content')</div>
-        <div class="item5">
-
-        </div>
+        <div class="item5">@yield('aside')</div>
         <div class="item6"><center>Copyright <label class="ime">Jernej Žuraj</label></center></div>
     </div>
 
