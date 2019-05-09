@@ -24,6 +24,9 @@
                 <li><a class="linki" href="/lige">Lige</a></li>
                 <li><a class="linki" href="/stadioni">Stadioni</a></li>
                 <li><a class="linki" href="/trenerji">Trenerji</a></li>
+                @if(\Auth::user()->lvl == "admin")
+                    <li><a class="linki" href="/uporabniki"><b>Uporabniki</b></a></li>
+                @endif
             </center>
         </div>
         <div class="item4">@yield('content')</div>
