@@ -1,6 +1,3 @@
-
-
-
 -- ************************************** `drzave`
 
 CREATE TABLE `drzave`
@@ -10,11 +7,6 @@ CREATE TABLE `drzave`
  `kratica_drzave` varchar(45) NOT NULL ,
 PRIMARY KEY (`id_drzave`)
 );
-
-
-
-
-
 
 -- ************************************** `ekipe`
 
@@ -31,51 +23,29 @@ CREATE TABLE `ekipe`
  `st_tock`           int NOT NULL ,
  `mesto`             int NOT NULL ,
  `id_ekipe`          int NOT NULL ,
-PRIMARY KEY),
-KEY `fkIdx_105` (`id_ekipe`),
-CONSTRAINT `FK_105` FOREIGN KEY `fkIdx_105` (`id_ekipe`) REFERENCES `drzave` (`id_drzave`)
+  KEY `fkIdx_105` (`id_ekipe`),
+  CONSTRAINT `FK_105` FOREIGN KEY `fkIdx_105` (`id_ekipe`) REFERENCES `drzave` (`id_drzave`)
 );
 
+-- ************************************** `trenerji`
 
-
--- ************************************** `ekipe_trenerji`
-
-CREATE TABLE `ekipe_trenerji`
+CREATE TABLE `trenerji`
 (
  `id_trenerja` int NOT NULL ,
- `id_ekipe`    int NOT NULL ,
-KEY `fkIdx_138` (`id_trenerja`),
-CONSTRAINT `FK_138` FOREIGN KEY `fkIdx_138` (`id_trenerja`) REFERENCES `trenerji` (`id_trenerja`),
-KEY `fkIdx_141` (`id_ekipe`),
-CONSTRAINT `FK_141` FOREIGN KEY `fkIdx_141` (`id_ekipe`) REFERENCES `drzave` (`id_drzave`)
+ `ime`         varchar(45) NOT NULL ,
+ `priimek`     varchar(45) NOT NULL ,
+PRIMARY KEY (`id_trenerja`)
 );
 
+-- ************************************** `pozicije`
 
-
-
-
-
--- ************************************** `goli`
-
-CREATE TABLE `goli`
+CREATE TABLE `pozicije`
 (
- `id_gola`    int NOT NULL ,
- `id_tekme`   int NOT NULL ,
- `id_igralca` int NOT NULL ,
- `id_ekipe`   int NOT NULL ,
- `cas`        int NOT NULL ,
- `tip`        char NOT NULL ,
- `polcas`     int NOT NULL ,
-PRIMARY KEY (`id_gola`),
-KEY `fkIdx_171` (`id_tekme`),
-CONSTRAINT `FK_171` FOREIGN KEY `fkIdx_171` (`id_tekme`) REFERENCES `tekme_gl` (`id_tekme`),
-KEY `fkIdx_174` (`id_igralca`),
-CONSTRAINT `FK_174` FOREIGN KEY `fkIdx_174` (`id_igralca`) REFERENCES `igralci` (`id_igralca`),
-KEY `fkIdx_177` (`id_ekipe`),
-CONSTRAINT `FK_177` FOREIGN KEY `fkIdx_177` (`id_ekipe`) REFERENCES `drzave` (`id_drzave`)
+ `id_pozicije` int NOT NULL ,
+ `naziv`       varchar(45) NOT NULL ,
+ `opis`        varchar(256) NOT NULL ,
+PRIMARY KEY (`id_pozicije`)
 );
-
-
 
 -- ************************************** `igralci`
 
@@ -94,91 +64,17 @@ KEY `fkIdx_88` (`id_pozicije`),
 CONSTRAINT `FK_88` FOREIGN KEY `fkIdx_88` (`id_pozicije`) REFERENCES `pozicije` (`id_pozicije`)
 );
 
+-- ************************************** `ekipe_trenerji`
 
-
-
-
-
--- ************************************** `igralci_menjave`
-
-CREATE TABLE `igralci_menjave`
+CREATE TABLE `ekipe_trenerji`
 (
- `id_tekme`       int NOT NULL ,
- `id_igralca`     int NOT NULL ,
- `id_ekipe`       int NOT NULL ,
- `v_iz`           char NOT NULL ,
- `minuta_menjave` int NOT NULL ,
- `polcas`         int NOT NULL ,
-KEY `fkIdx_108` (`id_ekipe`),
-CONSTRAINT `FK_108` FOREIGN KEY `fkIdx_108` (`id_ekipe`) REFERENCES `drzave` (`id_drzave`),
-KEY `fkIdx_74` (`id_tekme`),
-CONSTRAINT `FK_74` FOREIGN KEY `fkIdx_74` (`id_tekme`) REFERENCES `tekme_gl` (`id_tekme`),
-KEY `fkIdx_94` (`id_igralca`),
-CONSTRAINT `FK_94` FOREIGN KEY `fkIdx_94` (`id_igralca`) REFERENCES `igralci` (`id_igralca`)
+ `id_trenerja` int NOT NULL ,
+ `id_ekipe`    int NOT NULL ,
+KEY `fkIdx_138` (`id_trenerja`),
+CONSTRAINT `FK_138` FOREIGN KEY `fkIdx_138` (`id_trenerja`) REFERENCES `trenerji` (`id_trenerja`),
+KEY `fkIdx_141` (`id_ekipe`),
+CONSTRAINT `FK_141` FOREIGN KEY `fkIdx_141` (`id_ekipe`) REFERENCES `drzave` (`id_drzave`)
 );
-
-
-
-
--- ************************************** `kazenski_streli`
-
-CREATE TABLE `kazenski_streli`
-(
- `id_strela`  int NOT NULL ,
- `id_tekme`   int NOT NULL ,
- `id_drzave`  int NOT NULL ,
- `id_igralca` int NOT NULL ,
- `gol`        char NOT NULL ,
- `st_strela`  int NOT NULL ,
-PRIMARY KEY (`id_strela`),
-KEY `fkIdx_186` (`id_tekme`),
-CONSTRAINT `FK_186` FOREIGN KEY `fkIdx_186` (`id_tekme`) REFERENCES `tekme_gl` (`id_tekme`),
-KEY `fkIdx_189` (`id_drzave`),
-CONSTRAINT `FK_189` FOREIGN KEY `fkIdx_189` (`id_drzave`) REFERENCES `drzave` (`id_drzave`),
-KEY `fkIdx_192` (`id_igralca`),
-CONSTRAINT `FK_192` FOREIGN KEY `fkIdx_192` (`id_igralca`) REFERENCES `igralci` (`id_igralca`)
-);
-
-
-
-
-
-
--- ************************************** `kapitani`
-
-CREATE TABLE `kapitani`
-(
- `id_kapitana` int NOT NULL ,
- `id_tekme`    int NOT NULL ,
- `id_drzave`   int NOT NULL ,
-KEY `fkIdx_198` (`id_kapitana`),
-CONSTRAINT `FK_198` FOREIGN KEY `fkIdx_198` (`id_kapitana`) REFERENCES `igralci` (`id_igralca`),
-KEY `fkIdx_201` (`id_tekme`),
-CONSTRAINT `FK_201` FOREIGN KEY `fkIdx_201` (`id_tekme`) REFERENCES `tekme_gl` (`id_tekme`),
-KEY `fkIdx_204` (`id_drzave`),
-CONSTRAINT `FK_204` FOREIGN KEY `fkIdx_204` (`id_drzave`) REFERENCES `drzave` (`id_drzave`)
-);
-
-
-
-
--- ************************************** `pom_sodniki`
-
-CREATE TABLE `pom_sodniki`
-(
- `id_pom_sod` int NOT NULL ,
- `ime`        varchar(45) NOT NULL ,
- `priimek`    varchar(45) NOT NULL ,
- `id_drzave`  int NOT NULL ,
-PRIMARY KEY (`id_pom_sod`),
-KEY `fkIdx_162` (`id_drzave`),
-CONSTRAINT `FK_162` FOREIGN KEY `fkIdx_162` (`id_drzave`) REFERENCES `drzave` (`id_drzave`)
-);
-
-
-
-
-
 
 -- ************************************** `kraji`
 
@@ -192,24 +88,18 @@ KEY `fkIdx_115` (`id_drzave`),
 CONSTRAINT `FK_115` FOREIGN KEY `fkIdx_115` (`id_drzave`) REFERENCES `drzave` (`id_drzave`)
 );
 
+-- ************************************** `stadioni`
 
-
-
-
--- ************************************** `pozicije`
-
-CREATE TABLE `pozicije`
+CREATE TABLE `stadioni`
 (
- `id_pozicije` int NOT NULL ,
- `naziv`       varchar(45) NOT NULL ,
- `opis`        varchar(256) NOT NULL ,
-PRIMARY KEY (`id_pozicije`)
+ `id_stadiona`    int NOT NULL ,
+ `naziv_stadiona` varchar(45) NOT NULL ,
+ `st_sedezev`     int NOT NULL ,
+ `id_kraja`       int NOT NULL ,
+PRIMARY KEY (`id_stadiona`),
+KEY `fkIdx_123` (`id_kraja`),
+CONSTRAINT `FK_123` FOREIGN KEY `fkIdx_123` (`id_kraja`) REFERENCES `kraji` (`id_kraja`)
 );
-
-
-
-
-
 
 -- ************************************** `sodniki_gl`
 
@@ -225,27 +115,6 @@ PRIMARY KEY (`id_sodnika`),
 KEY `fkIdx_129` (`id_drzave`),
 CONSTRAINT `FK_129` FOREIGN KEY `fkIdx_129` (`id_drzave`) REFERENCES `drzave` (`id_drzave`)
 );
-
-
-
-
--- ************************************** `stadioni`
-
-CREATE TABLE `stadioni`
-(
- `id_stadiona`    int NOT NULL ,
- `naziv_stadiona` varchar(45) NOT NULL ,
- `st_sedezev`     int NOT NULL ,
- `id_kraja`       int NOT NULL ,
-PRIMARY KEY (`id_stadiona`),
-KEY `fkIdx_123` (`id_kraja`),
-CONSTRAINT `FK_123` FOREIGN KEY `fkIdx_123` (`id_kraja`) REFERENCES `kraji` (`id_kraja`)
-);
-
-
-
-
-
 
 -- ************************************** `tekme_gl`
 
@@ -271,24 +140,90 @@ KEY `fkIdx_97` (`mvp`),
 CONSTRAINT `FK_97` FOREIGN KEY `fkIdx_97` (`mvp`) REFERENCES `igralci` (`id_igralca`)
 );
 
+-- ************************************** `goli`
 
-
-
-
--- ************************************** `trenerji`
-
-CREATE TABLE `trenerji`
+CREATE TABLE `goli`
 (
- `id_trenerja` int NOT NULL ,
- `ime`         varchar(45) NOT NULL ,
- `priimek`     varchar(45) NOT NULL ,
-PRIMARY KEY (`id_trenerja`)
+ `id_gola`    int NOT NULL ,
+ `id_tekme`   int NOT NULL ,
+ `id_igralca` int NOT NULL ,
+ `id_ekipe`   int NOT NULL ,
+ `cas`        int NOT NULL ,
+ `tip`        char NOT NULL ,
+ `polcas`     int NOT NULL ,
+PRIMARY KEY (`id_gola`),
+KEY `fkIdx_171` (`id_tekme`),
+CONSTRAINT `FK_171` FOREIGN KEY `fkIdx_171` (`id_tekme`) REFERENCES `tekme_gl` (`id_tekme`),
+KEY `fkIdx_174` (`id_igralca`),
+CONSTRAINT `FK_174` FOREIGN KEY `fkIdx_174` (`id_igralca`) REFERENCES `igralci` (`id_igralca`),
+KEY `fkIdx_177` (`id_ekipe`),
+CONSTRAINT `FK_177` FOREIGN KEY `fkIdx_177` (`id_ekipe`) REFERENCES `drzave` (`id_drzave`)
 );
 
+-- ************************************** `igralci_menjave`
 
+CREATE TABLE `igralci_menjave`
+(
+ `id_tekme`       int NOT NULL ,
+ `id_igralca`     int NOT NULL ,
+ `id_ekipe`       int NOT NULL ,
+ `v_iz`           char NOT NULL ,
+ `minuta_menjave` int NOT NULL ,
+ `polcas`         int NOT NULL ,
+KEY `fkIdx_108` (`id_ekipe`),
+CONSTRAINT `FK_108` FOREIGN KEY `fkIdx_108` (`id_ekipe`) REFERENCES `drzave` (`id_drzave`),
+KEY `fkIdx_74` (`id_tekme`),
+CONSTRAINT `FK_74` FOREIGN KEY `fkIdx_74` (`id_tekme`) REFERENCES `tekme_gl` (`id_tekme`),
+KEY `fkIdx_94` (`id_igralca`),
+CONSTRAINT `FK_94` FOREIGN KEY `fkIdx_94` (`id_igralca`) REFERENCES `igralci` (`id_igralca`)
+);
 
+-- ************************************** `kazenski_streli`
 
+CREATE TABLE `kazenski_streli`
+(
+ `id_strela`  int NOT NULL ,
+ `id_tekme`   int NOT NULL ,
+ `id_drzave`  int NOT NULL ,
+ `id_igralca` int NOT NULL ,
+ `gol`        char NOT NULL ,
+ `st_strela`  int NOT NULL ,
+PRIMARY KEY (`id_strela`),
+KEY `fkIdx_186` (`id_tekme`),
+CONSTRAINT `FK_186` FOREIGN KEY `fkIdx_186` (`id_tekme`) REFERENCES `tekme_gl` (`id_tekme`),
+KEY `fkIdx_189` (`id_drzave`),
+CONSTRAINT `FK_189` FOREIGN KEY `fkIdx_189` (`id_drzave`) REFERENCES `drzave` (`id_drzave`),
+KEY `fkIdx_192` (`id_igralca`),
+CONSTRAINT `FK_192` FOREIGN KEY `fkIdx_192` (`id_igralca`) REFERENCES `igralci` (`id_igralca`)
+);
 
+-- ************************************** `kapitani`
+
+CREATE TABLE `kapitani`
+(
+ `id_kapitana` int NOT NULL ,
+ `id_tekme`    int NOT NULL ,
+ `id_drzave`   int NOT NULL ,
+KEY `fkIdx_198` (`id_kapitana`),
+CONSTRAINT `FK_198` FOREIGN KEY `fkIdx_198` (`id_kapitana`) REFERENCES `igralci` (`id_igralca`),
+KEY `fkIdx_201` (`id_tekme`),
+CONSTRAINT `FK_201` FOREIGN KEY `fkIdx_201` (`id_tekme`) REFERENCES `tekme_gl` (`id_tekme`),
+KEY `fkIdx_204` (`id_drzave`),
+CONSTRAINT `FK_204` FOREIGN KEY `fkIdx_204` (`id_drzave`) REFERENCES `drzave` (`id_drzave`)
+);
+
+-- ************************************** `pom_sodniki`
+
+CREATE TABLE `pom_sodniki`
+(
+ `id_pom_sod` int NOT NULL ,
+ `ime`        varchar(45) NOT NULL ,
+ `priimek`    varchar(45) NOT NULL ,
+ `id_drzave`  int NOT NULL ,
+PRIMARY KEY (`id_pom_sod`),
+KEY `fkIdx_162` (`id_drzave`),
+CONSTRAINT `FK_162` FOREIGN KEY `fkIdx_162` (`id_drzave`) REFERENCES `drzave` (`id_drzave`)
+);
 
 -- ************************************** `tekme_pod`
 
@@ -307,33 +242,3 @@ CONSTRAINT `FK_151` FOREIGN KEY `fkIdx_151` (`id_ekipe`) REFERENCES `drzave` (`i
 KEY `fkIdx_165` (`id_pom_sod`),
 CONSTRAINT `FK_165` FOREIGN KEY `fkIdx_165` (`id_pom_sod`) REFERENCES `pom_sodniki` (`id_pom_sod`)
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
